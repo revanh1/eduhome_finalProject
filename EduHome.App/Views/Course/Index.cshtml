@@ -1,0 +1,95 @@
+﻿ @model IEnumerable<Course>  
+ <!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>courses</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Course Start -->
+<div class="course-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search">
+                        <input class="searchInput" type="search" placeholder="Search..." name="search" />
+                        <button  class="SearchButton" type="submit">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row course_container">
+            @await Html.PartialAsync("_Course",Model)
+        </div>
+        <ul class="pagination">
+            <li><a class=" page-link" asp-controller="course" asp-action="index" asp-route-page="1">«</a></li>
+            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                @if (i == ViewBag.CurrentPage)
+                {
+                    <li class="page-item active"><a class=" page-link" asp-controller="course" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class=" page-link" asp-controller="course" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+            }
+            <li><a class="page-link" asp-controller="course" asp-action="index" asp-route-page="@ViewBag.TotalPage">»</a></li>
+        </ul>
+
+    </div>
+</div>
+<!-- Course End -->
+<script>
+    const submit = document.querySelector(".SearchButton");
+    const searchInput = document.querySelector(".searchInput")
+    const container = document.querySelector(".course_container")
+    searchInput.addEventListener("input", (e) => {
+        e.preventDefault();
+        if (searchInput.value == ""){
+            location.reload();
+        }
+      let  href = `/course/search?search=${searchInput.value}`;
+        fetch(href)
+            .then(x => x.json())
+            .then(x => {
+                container.innerHTML =""
+                x.forEach(item => {
+                    let view = ` <div class="col-md-4 col-sm-6 col-xs-12 courseCard" style="width:400px; height:540px;">
+                      <div class="single-course">
+                      <div class="course-img">
+                    <a asp-action="detail" asp-controller="course" asp-route-id="${item.id}">
+                        <img style="width:370px;height:250px;" src="/img/course/${item.image}" alt="course">
+                        <div class="course-hover">
+                            <i class="fa fa-link"></i>
+                        </div>
+                    </a>
+                </div>
+                    <div class="course-content" style="height:220px;overflow:hidden;">
+                    <h3><a asp-action="detail" asp-controller="course" asp-route-id="${item.id}">${item.name}</a></h3>
+                      <p style ="height:72px;overflow:hidden;">
+                  ${item.description}
+                    </p>
+                    <a class="default-btn" asp-action="detail" asp-controller="course" asp-route-id="${item.id}">read more</a>
+                </div>
+            </div>
+        </div>`;
+                    container.innerHTML += view;
+                } )
+            })
+    })
+</script>

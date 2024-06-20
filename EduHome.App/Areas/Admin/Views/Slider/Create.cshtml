@@ -1,0 +1,28 @@
+﻿@model Slider
+
+<div class="container">
+	<form method="post" enctype="multipart/form-data">
+	<div class="form-group">
+		    <label asp-for="@Model.Title" >Title:</label>
+			<input type="text" class="form-control" asp-for="@Model.Title"/>
+			<span asp-validation-for="Title" class="text text-danger"></span>
+	</div>
+	<div class="form-group">
+		    <label asp-for="@Model.Text" >Text:</label>
+			<input type="text" class="form-control" asp-for="@Model.Text"/>
+			<span asp-validation-for="Text" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="@Model.Link">Link:</label>
+			<input type="text" class="form-control" asp-for="@Model.Link"/>
+			<span asp-validation-for=" Link" class="text text-danger"></span>
+		</div>
+	<div class="form-group">
+		    <label asp-for="@Model.file" >File:</label>
+			<input type="file" class="form-control" asp-for="@Model.file"/>
+			<span asp-validation-for="file" class="text text-danger"></span>
+		</div>
+			@Html.AntiForgeryToken()
+	<button type="submit">Create</button>
+	</form>
+</div>

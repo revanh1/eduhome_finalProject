@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Teacher>
+@foreach (var item in Model)
+{
+       <div class="col-md-8 col-md-offset-2 col-sm-12">
+                    <div class="single-testimonial">
+    <div class="testimonial-info">
+        <div style="height:74px;" class="testimonial-img">
+            <img style="width:100%;height:100%;" src="~/img/teacher/@item.Image" alt="testimonial">
+        </div>
+        <div class="testimonial-content">
+            <p>@item.AboutText</p>
+            <h4>@item.Name</h4>
+            <h5>@item.Position?.Name, @item.Degree?.Name</h5>
+        </div>
+    </div>
+        </div>
+    </div>
+}

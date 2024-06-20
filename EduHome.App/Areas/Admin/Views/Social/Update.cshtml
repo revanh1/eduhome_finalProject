@@ -1,0 +1,39 @@
+﻿@model Social
+
+<div class="container">
+	<form method="post" enctype="multipart/form-data">
+		<div class="text text-danger" asp-validation-summary="ModelOnly"></div>
+		<div class="form-group">
+			<label asp-for="Name">Name:</label>
+			<input type="text" class="form-control" asp-for="Name" />
+			<span asp-validation-for="Name" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="Link">Link:</label>
+			<input class="form-control" asp-for="Link" />
+			<span asp-validation-for="Link" class="text text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label asp-for="TeacherId">Teacher</label>
+			<select asp-for="TeacherId" class="form-select" aria-label="Default select example">
+				<option value="0">Choose one of them</option>
+				@foreach (var item in ViewBag.Teachers)
+				{
+					if (Model.TeacherId != null)
+					{
+						if (Model.TeacherId == item.Id)
+						{
+							<option selected value="@item.Id">@item.Name</option>
+							continue;
+						}
+					}
+					<option value="@item.Id">@item.Name</option>
+				}
+			</select>
+			<span asp-validation-for="TeacherId" class="text text-danger"></span>
+		</div>
+		<div class="text text-warning">If you add social to setting,please don`t select Teacher</div>
+		@Html.AntiForgeryToken()
+		<button type="submit">Create</button>
+	</form>
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Blog>
+@foreach (var item in Model)
+{
+    <div class="col-md-6 col-sm-6 col-xs-12" style="height:487px; width:400px;">
+        <div class="single-blog mb-60">
+            <div class="blog-img">
+                <a asp-action="detail" asp-controller="blog" asp-route-id="@item.Id"><img style="height:250px;" src="~/img/blog/@item.Image" alt="blog"></a>
+                <div class="blog-hover">
+                    <i class="fa fa-link"></i>
+                </div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-top">
+                    <p>By @item.Author  /  @item.CreatedDate.Day.@item.CreatedDate.Month.@item.CreatedDate.Year  /  <i class="fa fa-comments-o"></i> 4</p>
+                </div>
+                <div class="blog-bottom" style="height:140px;">
+                    <h2><a asp-action="detail" asp-controller="blog" asp-route-id="@item.Id">@item.Title </a></h2>
+                    <a asp-action="detail" asp-controller="blog" asp-route-id="@item.Id">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

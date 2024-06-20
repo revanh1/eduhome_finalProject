@@ -1,0 +1,22 @@
+﻿@model Service
+@{
+    string[] text = Model.AboutTitle.Split(' ');
+}
+<div class="row">
+    <div class="col-md-6 col-sm-6">
+        <div class="about-content">
+            <h2>@for (int i = 0; i < text.Length - 1; i++)
+                {
+                    @String.Concat(text[i]," ")
+                }
+                <span>@text[text.Length-1]</span></h2>
+            <p>@Model.AboutText</p>
+            <a class="default-btn" asp-action="index" asp-controller="course">view courses</a>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+        <div class="about-img">
+            <img src="~/img/about/@Model.AboutImage" alt="about">
+        </div>
+    </div>
+</div>

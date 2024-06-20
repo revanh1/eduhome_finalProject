@@ -1,0 +1,136 @@
+﻿@model ContactVM
+<!-- Banner Area Start -->
+@if (!string.IsNullOrWhiteSpace((string)TempData["Message"]))
+{
+    <div style="display:none;" id="messageFormat">
+        @TempData["Message"]
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace((string)TempData["Success"]))
+{
+    <div style="display:none;" id="success">
+        @TempData["Success"]
+    </div>
+}
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>contact</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Contact Start -->
+<div class="map-area">
+    <!-- google-map-area start -->
+    <div class="google-map-area">
+        <!--  Map Section -->
+        <div id="contacts" class="map-area">
+            <div id="googleMap" style="width:100%;height:440px;"></div>
+        </div>
+    </div>
+</div>
+<div class="contact-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <div class="contact-contents text-center">
+                    <div class="single-contact mb-65">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact1.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>address</h3>
+                            <p>@Model.Service.Address</p>
+                        </div>
+                    </div>
+                    <div class="single-contact mb-65">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact2.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>phone</h3>
+                            <p>@Model.Service.Number1</p>
+                            <p>@Model.Service.Number2</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact3.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>Email Adress</h3>
+                            <p>@Model.Service.Email</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                <div class="reply-area">
+                    <h3>LEAVE A message</h3>
+                    <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                    <form asp-controller="contact" asp-action="sendemail"  method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>Name</p>
+                                <input type="text" name="name">
+                                <span class="text text-danger" asp-validation-for="@Model.Message.Name"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <p>Email</p>
+                                <input type="email" name="email">
+                                <span class="text text-danger" asp-validation-for="@Model.Message.Email"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <p>Subject</p>
+                                <input type="text" name="subject">
+                                <span class="text text-danger" asp-validation-for="@Model.Message.Subject"></span>
+                                <p>Message</p>
+                                <textarea name="body" cols="15" rows="10"></textarea>
+                                <span class="text text-danger" asp-validation-for="@Model.Message.Body"></span>
+                            </div>
+                        </div>
+                        <button class="reply-btn" type="submit"><span>send message</span></button>
+                        <p class="form-messege"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const messageFormat = document.querySelector("#messageFormat");
+    const successFormat = document.querySelector("#success")
+    if (messageFormat != undefined) {
+        const message = messageFormat.innerHTML;
+        if (message != "") {
+            Swal.fire(
+                'Contact',
+                `${message}`,
+                'question'
+            )
+        }
+    }
+    if (successFormat != undefined) {
+        const message = successFormat.innerHTML;
+        if (message != "") {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: `${message}`,
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    }
+</script>

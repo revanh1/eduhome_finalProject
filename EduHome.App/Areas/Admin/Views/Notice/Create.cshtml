@@ -1,0 +1,13 @@
+﻿@model Notice
+
+<div class="container">
+	<form method="post" enctype="multipart/form-data">
+	<div class="form-group">
+		    <label asp-for="Text" >Title:</label>
+			<input type="text" class="form-control" asp-for="Text" />
+			<span asp-validation-for="Text" class="text text-danger"></span>
+	</div>
+			@Html.AntiForgeryToken()
+	<button type="submit">Create</button>
+	</form>
+</div>

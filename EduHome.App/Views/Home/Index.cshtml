@@ -1,0 +1,308 @@
+﻿@model HomeVM
+@if (!string.IsNullOrWhiteSpace((string)TempData["Email"]))
+{
+    <div style="display:none;" id="emailFormat">
+        @TempData["Email"]
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace((string)TempData["Register"]))
+{
+    <div style="display:none;" id="verifyEmail">
+        @TempData["Register"]
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace((string)TempData["Verify"]))
+{
+    <div style="display:none;" id="successVerify">
+        @TempData["Verify"]
+    </div>
+}
+@if (!string.IsNullOrWhiteSpace((string)TempData["AdminInfo"]))
+{
+    <div style="display:none;" id="adminInfo">
+        @TempData["AdminInfo"]
+    </div>
+}
+<section id="slider-container" class="slider-area two">
+   
+    <div class="slider-owl owl-theme owl-carousel">
+        @foreach (var item in Model.Sliders)
+        {
+            <div class="single-slide item" style="background-image: url(/img/slider/@item.Image)">
+                <!-- Start Slider Content -->
+                <div class="slider-content-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="slide-content-wrapper">
+                                    <div class="slide-content text-center">
+                                        <h2>@item.Title </h2>
+                                        <p>@item.Text</p>
+                                        <a class="default-btn" href="@item.Link">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Slider Content -->
+            </div>
+        }
+    </div>
+</section>
+<!-- Background Area End -->
+<!-- Service Start -->
+<div class="service-area two pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-service">
+                    <h3><a href="teacher.html">PROFESSIONAL TEACHER</a></h3>
+                    <p>I must explain to you how all this mistaken denouncing pleure and praising pain </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-service">
+                    <h3><a href="teacher.html">PROFESSIONAL TEACHER</a></h3>
+                    <p>I must explain to you how all this mistaken denouncing pleure and praising pain </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="single-service">
+                    <h3><a href="teacher.html">PROFESSIONAL TEACHER</a></h3>
+                    <p>I must explain to you how all this mistaken denouncing pleure and praising pain </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+<!-- About Start -->
+<div class="about-area pb-155">
+    <div class="container">
+        @await Html.PartialAsync("_WelcomeText",Model.Service)
+    </div>
+</div>
+<!-- About End -->
+<!-- Courses Area Start -->
+<div class="courses-area two pt-150 pb-150 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="img/icon/section1.png" alt="section-title">
+                    <h2>COURSES WE OFFER</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("_Course",Model.Courses)
+        </div>
+    </div>
+</div>
+<!-- Courses Area End -->
+<!-- Notice Start -->
+<section class="notice-area two pt-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right-wrapper mb-25 pb-25">
+                    <h3>TAKE A VIDEO TOUR</h3>
+                    <div class="notice-video">
+                        <div class="video-icon video-hover">
+                            <a class="video-popup" href="@Model.Service.VideoLink">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left-wrapper">
+                    <h3>notice board</h3>
+                    <div class="notice-left">
+                        @await Html.PartialAsync("_NoticeBoard",Model.Notices)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Notice End -->
+<!-- Event Area Start -->
+<div class="event-area two text-center pt-100 pb-145">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="img/icon/section.png" alt="section-title">
+                    <h2>UPCOMMING EVENTS</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="single-event mb-35">
+                    <div class="event-img">
+                        <a href="event-details.html"><img src="img/event/event1.jpg" alt="event"></a>
+                    </div>
+                    <div class="event-content text-left">
+                        <h3>20 June 2017</h3>
+                        <h4><a href="event-details.html">ADVANCE PHP WORKSHOP</a></h4>
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
+                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
+                        </ul>
+                        <div class="event-content-right">
+                            <a class="default-btn" href="event-details.html">join now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-event hidden-sm hidden-xs">
+                    <div class="event-img">
+                        <a href="event-details.html"><img src="img/event/event3.jpg" alt="event"></a>
+                    </div>
+                    <div class="event-content text-left">
+                        <h3>16 June 2017</h3>
+                        <h4><a href="event-details.html">learning english history</a></h4>
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
+                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
+                        </ul>
+                        <div class="event-content-right">
+                            <a class="default-btn" href="event-details.html">join now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="single-event mb-35">
+                    <div class="event-img">
+                        <a href="event-details.html"><img src="img/event/event2.jpg" alt="event"></a>
+                    </div>
+                    <div class="event-content text-left">
+                        <h3>18 June 2017</h3>
+                        <h4><a href="event-details.html">DIGITAL MARKETING ANALYSIS</a></h4>
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
+                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
+                        </ul>
+                        <div class="event-content-right">
+                            <a class="default-btn" href="event-details.html">join now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-event hidden-sm hidden-xs">
+                    <div class="event-img">
+                        <a href="event-details.html"><img src="img/event/event3.jpg" alt="event"></a>
+                    </div>
+                    <div class="event-content text-left">
+                        <h3>14 June 2017</h3>
+                        <h4><a href="event-details.html">UI & UX DESIGNER MEETUP</a></h4>
+                        <ul>
+                            <li><i class="fa fa-clock-o"></i>9.00 AM - 4.45 PM</li>
+                            <li><i class="fa fa-map-marker"></i>New Yourk City</li>
+                        </ul>
+                        <div class="event-content-right">
+                            <a class="default-btn" href="event-details.html">join now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event Area End -->
+<!-- Testimonial Area Start -->
+<div class="testimonial-area pt-110 pb-105 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="testimonial-owl owl-theme owl-carousel">
+             
+                        @await Html.PartialAsync("_TeacherSlider",Model.Teachers)
+              
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial Area End -->
+<!-- Blog Area Start -->
+<div class="blog-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <img src="img/icon/section.png" alt="section-title">
+                    <h2>LATEST FROM BLOG</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("_Blog",Model.Blogs)
+        </div>
+    </div>
+</div>
+<!-- Blog Area End -->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const verifyEmail = document.querySelector("#verifyEmail");
+    const successVerify = document.querySelector("#successVerify")
+    const adminInfo = document.querySelector("#adminInfo");
+    const emailFormat = document.querySelector("#emailFormat");
+    if(verifyEmail != undefined){
+         const message1 = verifyEmail.innerHTML;
+         if(message1 != ""){
+            Swal.fire({
+                title: `${message1}`,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            })
+         }
+    }
+    if (successVerify != undefined) {
+        const message = successVerify.innerHTML;
+        if (message != "") {
+            Swal.fire(
+                `${message}`,
+                'You clicked the button!',
+                'success'
+            )
+        }
+    }
+    if (successVerify != undefined) {
+        const message = successVerify.innerHTML;
+        if (message != "") {
+            Swal.fire(
+                `${message}`,
+                'You clicked the button!',
+                'success'
+            )
+        }
+    }
+    if (adminInfo != undefined){
+        const message = adminInfo.innerHTML;
+        if (message != "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${message}`,
+            })
+        }
+    }
+    if (emailFormat != undefined) {
+        const message = emailFormat.innerHTML;
+        if (message != "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `${message}`,
+            })
+        }
+    }
+
+</script>
